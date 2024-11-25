@@ -1,0 +1,230 @@
+@font-face {
+    font-family: Poppins;
+    src: url(./font_resourcees/Poppins-Regular.ttf);
+}
+
+body{
+    margin: 0;
+    font-family: Poppins;
+}
+
+.container{
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.container > *{
+    background-color: #FEF3E2;
+}
+
+.panel{
+    grid-area: 'cart';
+    width: 90%;
+    height: 85%;
+    grid-column: 1/2;
+    grid-row: 1/3;
+    justify-self: center;
+    align-self: self-end;
+    margin-bottom: 3rem;
+    border-radius: 1.5rem;
+    
+}
+#checkout{
+    grid-area: 'co';
+    width: 90%;
+    height: 100%;
+    grid-column: 2/3;
+    grid-row: 2/3;
+    margin-bottom: 3rem;
+    align-self: self-end;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+.panel h1{
+    margin: 0;
+    font-size: 2rem;
+    padding: 1rem 2rem;
+    background-color: #FA4032;
+    color: white;
+    border-radius: 1.5rem 1.5rem 0 0;
+    letter-spacing: 0.1rem;
+}
+
+.cart-shower{
+    width: 100%;
+    height: 85%;
+    box-sizing: border-box;
+    overflow: scroll;
+}
+.cart-shower::-webkit-scrollbar {
+    width: 10px; /* Custom scrollbar width */
+}
+
+.cart-shower::-webkit-scrollbar-thumb {
+    background-color: #f76f65; /* Custom scrollbar color */
+    border-radius: 10px; /* Rounded scrollbar edges */
+}
+
+.cart-shower::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(200, 68, 68); /* Darker shade on hover */
+}
+
+.carts{
+    box-sizing: border-box;
+    width:93%;
+    margin-bottom: 2rem;
+    margin-inline: 2rem;
+    height: 10rem;
+    background-color: white;
+    display: grid;
+    grid-template-columns: 1fr 2fr 6fr 10fr;
+}
+#thank-you-message {
+    display: none;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.carts input[type="checkbox"]{
+    width: 2rem;
+    display: block;
+    margin-left: 0.8rem;
+}
+
+
+.carts img{
+    height: 9rem;
+    aspect-ratio: 1/1;
+    align-self: center;
+    object-fit: cover;
+}
+
+.carts p{
+    width: 100%;
+    font-size: 1.3rem;
+    justify-self: left;
+    font-weight: 600;
+    align-self: center;
+    padding-left: 1rem;
+}
+#checkout h2{
+    margin-top: 0;
+    margin-bottom: 2rem;  
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+#checkout label{
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+#checkout select{
+    width: 100%;
+    outline: 0;
+    border: 1px solid transparent;
+    font-size: 1.3rem;
+    font-weight: 600;
+    padding: 0.7rem;
+    margin-top: 0.5rem;
+    border-radius: 1rem;
+}
+
+#checkout span{
+    color: #FA4032;
+}
+
+#checkout button{
+    margin-top: 1.5rem;
+    display: block;
+    background-color: #FA4032;
+    color: white;
+    padding: 0.7rem;
+    width: 100%;
+    font-size: 1.3rem;
+    border: 1px solid transparent;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+
+
+.right-half {
+    display: grid;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    grid-template-columns: 4.5fr 4.5fr 1fr;
+    gap: 1em;
+    width: fit-content;
+    width: 60%;
+    justify-self: end;
+    padding: 1rem;
+    margin-right: 1rem;
+}
+
+.right-half > *{
+}
+
+.right-half label {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.right-half input,
+.right-half select {
+    width: 6.5rem;
+    box-sizing: border-box;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 2px solid #f76f65;
+    font-weight: 600;
+    align-self: center;
+    color: #f76f65;
+    text-align: center;
+    border-radius: 0.5rem;
+}
+
+.right-half input{
+    justify-self: right;
+}
+
+.right-half .remove-button {
+    background-color: #f76f65;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    align-self: center;
+}
+
+.right-half .remove-button img{
+    width: 2rem;
+    box-sizing: border-box;
+    padding: 0.2rem;
+    height: auto;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+.right-half .remove-button:hover {
+    background-color: rgb(200, 68, 68);
+}
+
+.quan-size{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    font-weight: 600;
+    justify-content: right;
+    width: fit-content;
+    margin: 0 11rem 0;
+    float: right;
+    gap: 3.3rem;
+    text-align: center;
+}
