@@ -1,0 +1,132 @@
+@font-face {
+    font-family: Poppins;
+    src: url(./font_resourcees/Poppins-Regular.ttf);
+}
+@font-face {
+	font-family: Atteron;
+	src: url(./font_resourcees/atteron/Atteron.ttf);
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background: rgb(250,64,50);
+    background: linear-gradient(0deg, rgba(250,64,50,0.68) 0%, rgba(250,64,50,0.41) 48%, rgba(236,218,21,1) 100%);
+    min-height: 100vh;
+    background-repeat: no-repeat;
+}
+
+nav{
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+    background: #FFF8DE;
+	border-bottom: 3px solid black;
+	box-sizing: border-box;
+	padding-inline: 1.7vw;
+	padding-block: 1vh;
+	height: 6vh;
+	align-content: center;
+	z-index: 2;
+    position: sticky;
+    top: 0;
+}
+
+nav > *{
+	box-sizing: border-box;
+	display: flex;
+	gap: 2vw;
+	font-size: 1.4rem;
+	align-self: center;
+}
+
+nav a{
+	display: block;
+	text-decoration: none;
+	/* color: #FAF6E3; */
+    color:#FA4032;
+    font-weight: 600;
+	letter-spacing: 0.1vw;
+    font-family: Atteron;
+}
+
+nav{
+	grid-column: 1/2;
+	grid-row: 1/2;
+}
+
+main{
+    margin: 0 auto;
+    width: 55vw;
+    min-height: 100vh;
+}
+
+.profile-image{
+    width: 100%;
+    border: 1px solid transparent;
+
+}
+
+.profile-image img{
+    aspect-ratio: 1/1;
+    width: 12.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 1rem auto 1rem;
+    display: block;
+    background-color: white;
+}
+
+.user-info{
+    width: 100%;
+    padding: 1rem 10rem 3rem;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.635);
+    border-radius: 1rem;
+}
+
+.user-info-desc{
+    font-family: Poppins;
+    font-size: 1.2rem;
+}
+
+.user-info-desc p{
+    margin: 0;
+}
+
+.logout-button{
+    margin: 0.5rem auto;
+    font-family: Poppins;
+    padding: 0.5rem 3rem;
+    background-color:#ffc053;
+    width: fit-content;
+    border-radius: 1rem;
+}
+
+
+.orders-container{
+    width: 100%;
+}
+
+.order-tag{
+    font-family: Poppins;
+    margin: 3rem 0 0;
+    background-color: #FAB12F;
+    font-size: 1.2rem;
+    font-weight: 600;
+    width: fit-content;
+    padding: 0.5rem 1.5rem;
+    border-radius: 1rem 1rem 0 0;
+}
+
+.order-tag p{
+    margin: 0;
+}
+
+.orders{
+    min-height: 5rem;
+    width: 100%;
+    background-color: #FA4032;
+    border-radius: 0 1rem 1rem 1rem;
+    padding: 1rem;
+}

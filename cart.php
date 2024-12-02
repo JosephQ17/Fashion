@@ -32,6 +32,21 @@ $cart_items = $result->fetch_all(MYSQLI_ASSOC);
     <title>Cart</title>
 </head>
 <body>
+    <nav>
+        <div class="left">
+            <a href="Mens.php">MENS</a>
+            <a href="Womens.php">WOMENS</a>
+            <a href="Children.php">CHILDRENS</a>
+        </div>
+        <div class="middle">
+            <a href="">KAL VIN</a>
+        </div>
+        <div class="right">
+            <a href="index.php">HOME</a>
+            <a href="cart.php">CART</a>
+            <a href="logout.php">ACCOUNT</a>
+        </div>
+    </nav>
     <div class="container">
         <div class="panel">
             <h1>Your cart</h1>
@@ -41,7 +56,7 @@ $cart_items = $result->fetch_all(MYSQLI_ASSOC);
             </div>
             <div class="cart-shower">
                 <?php if (empty($cart_items)): ?>
-                <p>Your cart is empty.</p>
+                <p style="font-family: Poppins; margin-left:2rem;">Your cart is empty.</p>
                 <?php else: ?>
                     <?php foreach ($cart_items as $item): ?>
                         <div class="carts" data-price="<?= $item['price'] ?>" data-id="<?= $item['item_id'] ?>" >
@@ -88,14 +103,15 @@ $cart_items = $result->fetch_all(MYSQLI_ASSOC);
                 <label for="payment_method">Payment Method</label>
                 <br>
                 <select name="payment_method" id = "payment_method" required>
-                    <option value="cash">Cash</option>
-                    <option value="credit">Credit</option>
+                    <option value="cash">Cash On Delivery</option>
+                    <option value="credit">GCash</option>
                 </select>
                 <br>
                 <button type="button" id="checkout-button">Checkout</button>
             </form>
         </div>
     </div>
+    <div id="thank-you-backdrop"></div>
     <div id="thank-you-message">
         <h2>Thank you for your purchase!</h2>
     </div>
@@ -120,9 +136,30 @@ $cart_items = $result->fetch_all(MYSQLI_ASSOC);
                 });
 
                 if (selectedItems.length > 0) {
-                    // Simulate checkout
+                    const paymentMethod = $('#payment_method').val(); // Get the selected payment method
+
+                    // Customize the thank-you message based on the payment method
+                    let thankYouMessage = "<h2>Order Confirmation! Thank you for shopping with us!</h2>";
+                    if (paymentMethod === "cash") {
+                        thankYouMessage += "<p>Your purchase has been successfully processed.</p>";
+                    } else if (paymentMethod === "credit") {
+                        thankYouMessage += "<p>Please pay once you receive your order.</p>";
+                    }
+
+                    // Add the "Go Back To Shopping" button
+                    thankYouMessage += `<button id="go-back-button" class="btn btn-primary" style = "font-family: Poppins; font-size: 2rem; padding:1rem 5rem; background-color: transparent; border-radius: 2rem; border: 1px solid black; margin-bottom: 2rem;">Go Back To Shopping</button>`;
+
+                    // Update and display the thank-you message
+                    $('#thank-you-message').html(thankYouMessage).show();
+                    $('#thank-you-backdrop').show();
+
+                    // Hide the checkout section
                     $('#checkout').hide();
-                    $('#thank-you-message').show();
+
+                    // Redirect to Mens.php on button click
+                    $('#go-back-button').on('click', function () {
+                        window.location.href = 'Mens.php';
+                    });
                 } else {
                     alert('Please select items to checkout.');
                 }

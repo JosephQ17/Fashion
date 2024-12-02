@@ -16,16 +16,16 @@
 			<nav>
 				<div class="left">
 					<a href="Mens.php">MENS</a>
-					<a href="">WOMENS</a>
-					<a href="">CHILDRENS</a>
+					<a href="Womens.php">WOMENS</a>
+					<a href="Children.php">CHILDRENS</a>
 				</div>
 				<div class="middle">
 					<a href="">KAL VIN</a>
 				</div>
 				<div class="right">
-					<a href="">SIGN-IN</a>
+					<a href="index.php">HOME</a>
 					<a href="cart.php">CART</a>
-					<a href="">CHECK-OUT</a>
+					<a href="logout.php">LOG-OUT</a>
 				</div>
 			</nav>
 			<div class="home-banner">

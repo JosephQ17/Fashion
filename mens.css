@@ -2,28 +2,86 @@
     font-family: Poppins;
     src: url(./font_resourcees/Poppins-Regular.ttf);
 }
+@font-face {
+	font-family: Atteron;
+	src: url(./font_resourcees/atteron/Atteron.ttf);
+}
 body {
     /* font-family: Arial, sans-serif; */
     font-family: Poppins;
 }
 
 
+nav{
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+    background: #FFF8DE;
+	border-bottom: 3px solid black;
+	box-sizing: border-box;
+	padding-inline: 1.7vw;
+	padding-block: 1vh;
+	height: 6vh;
+	align-content: center;
+	z-index: 2;
+    position: sticky;
+    top: 0;
+}
+
+nav > *{
+	box-sizing: border-box;
+	display: flex;
+	gap: 2vw;
+	font-size: 1.4rem;
+	align-self: center;
+}
+
+nav a{
+	display: block;
+	text-decoration: none;
+	/* color: #FAF6E3; */
+    color:#FA4032;
+    font-weight: 600;
+	letter-spacing: 0.1vw;
+    font-family: Atteron;
+}
+
+nav{
+	grid-column: 1/2;
+	grid-row: 1/2;
+}
+
+
 .grid-input{
     display: grid;
-    grid-template-columns: 20% 80%;
+    grid-template-columns: 50% 50%;
 }
 
 .grid-input>*{
 }
 
 .modal-content .grid-input .right{
-    width: 80%;
+    border: 2px solid black;
 }
 .modal-content .grid-input .left{
     justify-self:end;
     align-self: center;
-    margin-right: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
 }
+.left-side{
+    display: flex;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    font-size: 1rem;
+}
+.right-side{
+    display: flex;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    font-size: 1rem;
+}
+
 .modal {
     display: none;
     position: fixed;
@@ -40,11 +98,90 @@ body {
     display: flex;
 }
 .modal-content {
+    border: 2px solid #FA4032;
     background: #FFF8DE;
-    padding: 20px;
+    /* padding: 20px; */
     border-radius: 8px;
-    width: 400px;
+    width: 825px;
+    height: 600px;
     text-align: center;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 45% 55%;
+    box-sizing: border-box;
+}
+
+.modal-content>*{
+    border-radius: 14px;
+    margin: 20px;
+
+}
+.right-modal{
+    margin: 40px 40px 40px 20px;
+}
+.right-modal h1{
+    margin: 0;
+    font-family: Poppins;
+    color: white;
+}
+.right-modal-description{
+    background-color: white;
+    height: 85%;
+    padding: 1rem;
+    text-align: left;
+    font-size: 1.2rem;
+    border-radius: 0 0 14px 14px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+.right-modal-title{
+    height: 15%;
+    padding: 1rem;
+    text-align: left    ;
+    background-color: #FA4032;
+    border-radius: 14px 14px 0 0;
+    box-sizing: border-box;
+}
+.left-modal{
+    margin: 40px 20px 40px 40px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 57% 43%;
+    
+}
+.image-box{
+    background-color: #FA4032;
+    border-radius: 14px 14px 0 0;
+    box-sizing: border-box;
+    padding: 2rem;
+}
+.form-box{
+    background-color: white;
+    border-radius: 0 0 14px 14px;
+    text-align: left;
+    padding-left: 1rem;
+    font-family: Poppins;
+}
+.form-box h1{
+    color: #FA4032;
+}
+.grid-input > *{
+}
+.desc-buttons{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+}
+.left-modal .image-box img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .modal-content input,
 .modal-content button {
@@ -57,16 +194,17 @@ body {
 }
 
 #size{
-    width: 87%;
-    margin: 10px 0;
+    width: 6.4rem;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 2px solid black;
+    border-radius: 5rem;
+    margin-right: 1rem;
 }
 .modal-content button {
     background-color: #FA4032;
     color: white;
     cursor: pointer;
+    width: 90%;
 }
 
 .product-box {
@@ -74,7 +212,7 @@ body {
     border-radius: 0px 8px 8px 8px;
     width: auto;
     height: 23rem;
-    padding-left:35rem;
+    /* padding-left:100rem; */
     padding-bottom: 30px;
     margin-left: 2rem;
     margin-right: 2rem;
@@ -169,6 +307,10 @@ body {
     padding: 1rem;
     background-color: #FFF8DE;
 }
+.bottom-left-side{
+    display: flex;
+    justify-content: space-between;
+}
 
 .product-box-title{
     /* border: solid 2px black; */
@@ -176,8 +318,9 @@ body {
     margin-left: 2rem;
     /* margin-bottom: 3px; */
     height: 3rem;
-    width: 18rem;
+    width: fit-content;
     padding-top: 8px;
+    padding-inline: 2rem;
     text-align: center;
     background-color: #FAB12F;
 }
@@ -236,5 +379,6 @@ body {
     color: orangered;
     
 }
+
 
 /* boi nilagyan ko lang ng border para makita yung preview, pero pag may kulay na pede na tanggalin */

@@ -13,8 +13,17 @@
     }
 
     // Fetch items from the database
-    $stmt = $pdo->query("SELECT * FROM items");
-    $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmtShoes = $pdo->prepare("SELECT * FROM items WHERE category = 'cs'");
+    $stmtShoes->execute();
+    $shoesItems = $stmtShoes->fetchAll(PDO::FETCH_ASSOC);
+
+    $stmtBags = $pdo->prepare("SELECT * FROM items WHERE category = 'cb'");
+    $stmtBags->execute();
+    $bagsItems = $stmtBags->fetchAll(PDO::FETCH_ASSOC);
+
+    $stmtAccessories = $pdo->prepare("SELECT * FROM items WHERE category = 'ca'");
+    $stmtAccessories->execute();
+    $accessoriesItems = $stmtAccessories->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -26,26 +35,54 @@
     <title>Joseph and Kalvin</title>
 </head>
 <body>
+    <nav>
+        <div class="left">
+            <a href="Mens.php">MENS</a>
+            <a href="Womens.php">WOMENS</a>
+            <a href="Children.php">CHILDRENS</a>
+        </div>
+        <div class="middle">
+            <a href="">KAL VIN</a>
+        </div>
+        <div class="right">
+            <a href="index.php">HOME</a>
+            <a href="cart.php">CART</a>
+            <a href="logout.php">LOG-OUT</a>
+        </div>
+    </nav>
+    <main>
+        
+    </main>
+
     <div class="product-banner">
 
     </div>
 
     <div class="product-box-whole-container">
         <div class="product-box-title">
-            <h1>Mens Shoes</h1>
+            <h1>Childrens Shoes</h1>
         </div>
 
         <div class="product-box" id="slider1">
             <button class="button prev" onclick="changeSlide(-1, 1)">&#10094;</button>
             <div class="slides">
-                <?php foreach ($items as $item): ?>
-                    <div class="slide" data-id="<?= htmlspecialchars($item['id']) ?>" data-name="<?= htmlspecialchars($item['name']) ?>" data-price="<?= htmlspecialchars($item['price']) ?>" sold-desc="<?= htmlspecialchars($item['sold_desc']) ?>">
+            <?php foreach ($shoesItems as $item): ?>
+                    <div class="slide" data-id="<?= htmlspecialchars($item['id']) ?>" data-name="<?= htmlspecialchars($item['name']) ?>" data-price="<?= htmlspecialchars($item['price']) ?>" sold-desc="<?= htmlspecialchars($item['sold_desc']) ?>" desc="<?= htmlspecialchars($item['description']) ?>">
                         <img src="<?= htmlspecialchars($item['image_path']) ?>" alt="Product Image">
                         <div class="prod-intro">
                             <p><?= htmlspecialchars($item['name']) ?></p>
                             <h5 class="price" style="margin-bottom:0.8rem;">$<?= htmlspecialchars(number_format($item['price'], 2)) ?></h5>
-                            <button onclick="openModal(this)" style="margin-bottom:0.8rem;">Buy Item</button>
-
+                            <button onclick="openModal(this)" 
+                                data-id="<?= htmlspecialchars($item['id']) ?>" 
+                                data-name="<?= htmlspecialchars($item['name']) ?>" 
+                                data-price="<?= htmlspecialchars($item['price']) ?>" 
+                                data-sold="<?= htmlspecialchars($item['sold_desc']) ?>" 
+                                data-address="<?= htmlspecialchars($item['address']) ?>" 
+                                data-description="<?= htmlspecialchars($item['description']) ?>" 
+                                data-image="<?= htmlspecialchars($item['image_path']) ?>" 
+                                style="margin-bottom:0.8rem;">
+                                Buy Item
+                            </button>
                             <p><?= htmlspecialchars($item['sold_desc']) ?></p>
                             <h6><?= htmlspecialchars($item['address']) ?></h6>
                         </div>
@@ -65,114 +102,35 @@
 
     <div class="product-box-whole-container">
         <div class="product-box-title">
-            <h1>Mens Bag</h1>
+            <h1>Childrens Bag</h1>
         </div>
 
         <div class="product-box" id="slider2">
             <button class="button prev" onclick="changeSlide(-1, 2)">&#10094;</button>
-
-            <div class="slides">
-                 <div class="slide">
-                        <img src="S1.png" alt="">
+                <div class="slides">
+                <?php foreach ($bagsItems as $item): ?>
+                    <div class="slide" data-id="<?= htmlspecialchars($item['id']) ?>" data-name="<?= htmlspecialchars($item['name']) ?>" data-price="<?= htmlspecialchars($item['price']) ?>" sold-desc="<?= htmlspecialchars($item['sold_desc']) ?>" desc="<?= htmlspecialchars($item['description']) ?>">
+                        <img src="<?= htmlspecialchars($item['image_path']) ?>" alt="Product Image">
                         <div class="prod-intro">
-                            <p>Unisex plain cotton pants</p>
-                            <h5>1000$</h5><br>
-                            <p>10K+ sold</p>
-                            <h6>Tanay, Rizal</h6>
+                            <p><?= htmlspecialchars($item['name']) ?></p>
+                            <h5 class="price" style="margin-bottom:0.8rem;">$<?= htmlspecialchars(number_format($item['price'], 2)) ?></h5>
+                            <button onclick="openModal(this)" 
+                                data-id="<?= htmlspecialchars($item['id']) ?>" 
+                                data-name="<?= htmlspecialchars($item['name']) ?>" 
+                                data-price="<?= htmlspecialchars($item['price']) ?>" 
+                                data-sold="<?= htmlspecialchars($item['sold_desc']) ?>" 
+                                data-address="<?= htmlspecialchars($item['address']) ?>" 
+                                data-description="<?= htmlspecialchars($item['description']) ?>" 
+                                data-image="<?= htmlspecialchars($item['image_path']) ?>" 
+                                style="margin-bottom:0.8rem;">
+                                Buy Item
+                            </button>
+                            <p><?= htmlspecialchars($item['sold_desc']) ?></p>
+                            <h6><?= htmlspecialchars($item['address']) ?></h6>
                         </div>
+                    </div>
+                <?php endforeach; ?>
                 </div>
-
-                <div class="slide">
-                <img src="S2.png" alt="">
-                        <div class="prod-intro">
-                            <p>Unisex plain cotton pants</p>
-                            <h5>1000$</h5><br>
-                            <p>10K+ sold</p>
-                            <h6>Tanay, Rizal</h6>
-                        </div>
-                </div>
-
-                <div class="slide">
-                <img src="S3.png" alt="">
-                        <div class="prod-intro">
-                            <p>Unisex plain cotton pants</p>
-                            <h5>1000$</h5><br>
-                            <p>10K+ sold</p>
-                            <h6>Tanay, Rizal</h6>
-                        </div>
-                </div>
-
-                <div class="slide">
-                <img src="S4.png" alt="">
-                        <div class="prod-intro">
-                            <p>Unisex plain cotton pants</p>
-                            <h5>1000$</h5><br>
-                            <p>10K+ sold</p>
-                            <h6>Tanay, Rizal</h6>
-                        </div>
-                </div>
-
-                <div class="slide">
-                <img src="S5.png" alt="">
-                        <div class="prod-intro">
-                            <p>Unisex plain cotton pants</p>
-                            <h5>1000$</h5><br>
-                            <p>10K+ sold</p>
-                            <h6>Tanay, Rizal</h6>
-                        </div>
-                </div>
-
-                <div class="slide">
-                <img src="S6.png" alt="">
-                        <div class="prod-intro">
-                            <p>Unisex plain cotton pants</p>
-                            <h5>1000$</h5><br>
-                            <p>10K+ sold</p>
-                            <h6>Tanay, Rizal</h6>
-                        </div>
-                </div>
-
-                <div class="slide">
-                <img src="S7.png" alt="">
-                        <div class="prod-intro">
-                            <p>Unisex plain cotton pants</p>
-                            <h5>1000$</h5><br>
-                            <p>10K+ sold</p>
-                            <h6>Tanay, Rizal</h6>
-                        </div>
-                </div>
-
-                <div class="slide">
-                <img src="S8.png" alt="">
-                        <div class="prod-intro">
-                            <p>Unisex plain cotton pants</p>
-                            <h5>1000$</h5><br>
-                            <p>10K+ sold</p>
-                            <h6>Tanay, Rizal</h6>
-                        </div>
-                </div>
-
-                <div class="slide">
-                <img src="S9.png" alt="">
-                        <div class="prod-intro">
-                            <p>Unisex plain cotton pants</p>
-                            <h5>1000$</h5><br>
-                            <p>10K+ sold</p>
-                            <h6>Tanay, Rizal</h6>
-                        </div>
-                </div>
-
-                <div class="slide">
-                <img src="S10.png" alt="">
-                        <div class="prod-intro">
-                            <p>Unisex plain cotton pants</p>
-                            <h5>1000$</h5><br>
-                            <p>10K+ sold</p>
-                            <h6>Tanay, Rizal</h6>
-                        </div>
-                </div>
-
-            </div>
             <button class="button next" onclick="changeSlide(1, 2)">&#10095;</button>
         </div>
     </div>
@@ -186,138 +144,89 @@
 
     <div class="product-box-whole-container">
         <div class="product-box-title">
-            <h1>Mens Accesories</h1>
+            <h1>Childrens Accessories</h1>
         </div>
 
         <div class="product-box" id="slider3">
             <button class="button prev" onclick="changeSlide(-1, 3)">&#10094;</button>
-
             <div class="slides">
-            <div class="slide">
-                        <img src="S1.png" alt="">
+                <?php foreach ($accessoriesItems as $item): ?>
+                    <div class="slide" data-id="<?= htmlspecialchars($item['id']) ?>" data-name="<?= htmlspecialchars($item['name']) ?>" data-price="<?= htmlspecialchars($item['price']) ?>" sold-desc="<?= htmlspecialchars($item['sold_desc']) ?>" desc="<?= htmlspecialchars($item['description']) ?>">
+                        <img src="<?= htmlspecialchars($item['image_path']) ?>" alt="Product Image">
                         <div class="prod-intro">
-                            <p>Unisex plain cotton pants</p>
-                            <h5>1000$</h5><br>
-                            <p>10K+ sold</p>
-                            <h6>Tanay, Rizal</h6>
+                            <p><?= htmlspecialchars($item['name']) ?></p>
+                            <h5 class="price" style="margin-bottom:0.8rem;">$<?= htmlspecialchars(number_format($item['price'], 2)) ?></h5>
+                            <button onclick="openModal(this)" 
+                                data-id="<?= htmlspecialchars($item['id']) ?>" 
+                                data-name="<?= htmlspecialchars($item['name']) ?>" 
+                                data-price="<?= htmlspecialchars($item['price']) ?>" 
+                                data-sold="<?= htmlspecialchars($item['sold_desc']) ?>" 
+                                data-address="<?= htmlspecialchars($item['address']) ?>" 
+                                data-description="<?= htmlspecialchars($item['description']) ?>" 
+                                data-image="<?= htmlspecialchars($item['image_path']) ?>" 
+                                style="margin-bottom:0.8rem;">
+                                Buy Item
+                            </button>
+                            <p><?= htmlspecialchars($item['sold_desc']) ?></p>
+                            <h6><?= htmlspecialchars($item['address']) ?></h6>
                         </div>
-                </div>
-
-                <div class="slide">
-                <img src="S2.png" alt="">
-                        <div class="prod-intro">
-                            <p>Unisex plain cotton pants</p>
-                            <h5>1000$</h5><br>
-                            <p>10K+ sold</p>
-                            <h6>Tanay, Rizal</h6>
-                        </div>
-                </div>
-
-                <div class="slide">
-                <img src="S3.png" alt="">
-                        <div class="prod-intro">
-                            <p>Unisex plain cotton pants</p>
-                            <h5>1000$</h5><br>
-                            <p>10K+ sold</p>
-                            <h6>Tanay, Rizal</h6>
-                        </div>
-                </div>
-
-                <div class="slide">
-                <img src="S4.png" alt="">
-                        <div class="prod-intro">
-                            <p>Unisex plain cotton pants</p>
-                            <h5>1000$</h5><br>
-                            <p>10K+ sold</p>
-                            <h6>Tanay, Rizal</h6>
-                        </div>
-                </div>
-
-                <div class="slide">
-                <img src="S5.png" alt="">
-                        <div class="prod-intro">
-                            <p>Unisex plain cotton pants</p>
-                            <h5>1000$</h5><br>
-                            <p>10K+ sold</p>
-                            <h6>Tanay, Rizal</h6>
-                        </div>
-                </div>
-
-                <div class="slide">
-                <img src="S6.png" alt="">
-                        <div class="prod-intro">
-                            <p>Unisex plain cotton pants</p>
-                            <h5>1000$</h5><br>
-                            <p>10K+ sold</p>
-                            <h6>Tanay, Rizal</h6>
-                        </div>
-                </div>
-
-                <div class="slide">
-                <img src="S7.png" alt="">
-                        <div class="prod-intro">
-                            <p>Unisex plain cotton pants</p>
-                            <h5>1000$</h5><br>
-                            <p>10K+ sold</p>
-                            <h6>Tanay, Rizal</h6>
-                        </div>
-                </div>
-
-                <div class="slide">
-                <img src="S8.png" alt="">
-                        <div class="prod-intro">
-                            <p>Unisex plain cotton pants</p>
-                            <h5>1000$</h5><br>
-                            <p>10K+ sold</p>
-                            <h6>Tanay, Rizal</h6>
-                        </div>
-                </div>
-
-                <div class="slide">
-                <img src="S9.png" alt="">
-                        <div class="prod-intro">
-                            <p>Unisex plain cotton pants</p>
-                            <h5>1000$</h5><br>
-                            <p>10K+ sold</p>
-                            <h6>Tanay, Rizal</h6>
-                        </div>
-                </div>
-
-                <div class="slide">
-                <img src="S10.png" alt="">
-                        <div class="prod-intro">
-                            <p>Unisex plain cotton pants</p>
-                            <h5>1000$</h5><br>
-                            <p>10K+ sold</p>
-                            <h6>Tanay, Rizal</h6>
-                        </div>
-                </div>
-
+                    </div>
+                <?php endforeach; ?>
             </div>
             <button class="button next" onclick="changeSlide(1, 3)">&#10095;</button>
         </div>
     </div>
     <div id="modal" class="modal">
         <div class="modal-content">
-            <h2>Customize Item</h2>
-            <form id="customizeForm">
-                <input type="hidden" name="item_id" id="item_id">
-                <input type="hidden" name="item_name" id="item_name">
-                <div class="grid-input">
-                    <label for="size" class = "left">Size:</label>
-                    <select name="size" id="size" required  class = "right">
-                        <option value="Small">Small</option>
-                        <option value="Medium">Medium</option>
-                        <option value="Large">Large</option>
-                    </select>
-                    <label for="color" class = "left">Color:</label>
-                    <input type="text" name="color" id="color" placeholder="Enter color" required class = "right">
-                    <label for="quantity" class = "left">Quantity:</label>
-                    <input type="number" name="quantity" id="quantity" min="1" placeholder="Enter Quantity" required class = "right">
+            <div class="left-modal">
+                <div class="image-box">
+                    <img src="" alt="Item Image">
                 </div>
-                <button type="submit">Add to Cart</button>
-            </form>
-            <button onclick="closeModal()">Cancel</button>
+                <div class="form-box">
+                    <h1 class="show-price">$0.00</h1>
+                    <p class = "show-sold">0 sold</p>
+                    <p class = "show-address">Address</p>
+                </div>
+            </div>
+            <div class="right-modal">
+                <div class="right-modal-title">
+                    <h1>Item Name</h1>
+                </div>
+                <div class="right-modal-description">
+                    <p>
+                        Description goes here..
+                    </p>
+                    <div class="form-customize">
+                        <form action="" id="customizeForm">
+                            <input type="hidden" name="item_id" id="item_id">
+                            <input type="hidden" name="item_name" id="item_name">
+                            <div class="grid-input">
+                                <div class="left-side">
+                                    <label for="color" class = "left">Color:</label>
+                                    <input type="text" name="color" id="color" placeholder="Color" required class = "right" style = "width:5rem; margin-left: 1rem;">
+                                </div>
+                                <div class="right-side">
+                                    <label for="quantity" class = "left">Qty:</label>
+                                    <input type="number" name="quantity" id="quantity" min="1" placeholder="Qty" required class = "right" style = "width:5rem; margin-left: 1rem;"  >
+                                </div>
+                                <div class="bottom-left-side">
+                                    <label for="size" class = "left">Size:</label>
+                                    <select name="size" id="size" required  class = "right">
+                                        <option value="Small">Small</option>
+                                        <option value="Medium">Medium</option>
+                                        <option value="Large">Large</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="desc-buttons">
+                                <button type="submit">Add to Cart</button>
+                                <button onclick="closeModal()">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- <button onclick="closeModal()">Cancel</button> -->
         </div>
     </div>
 
@@ -350,9 +259,27 @@
         const form = document.getElementById('customizeForm');
 
         function openModal(button) {
-            const card = button.closest('.slide');
-            document.getElementById('item_id').value = card.dataset.id;
-            document.getElementById('item_name').value = card.dataset.name;
+            // Fetch item details from data attributes
+            const itemId = button.dataset.id;
+            const itemName = button.dataset.name;
+            const itemPrice = button.dataset.price;
+            const itemSold = button.dataset.sold;
+            const itemAddress = button.dataset.address;
+            const itemDescription = button.dataset.description;
+            const itemImage = button.dataset.image;
+
+            // Populate the modal with item details
+            document.getElementById('item_id').value = itemId; // Hidden input
+            document.getElementById('item_name').value = itemName; // Hidden input
+
+            // Update visible modal content
+            document.querySelector('.image-box img').src = itemImage; // Update image
+            document.querySelector('.show-price').textContent = `$${parseFloat(itemPrice).toFixed(2)}`; // Update price may dollar here
+            document.querySelector('.show-sold').textContent = `${itemSold}`; // Update sold description
+            document.querySelector('.show-address').textContent = `${itemAddress}`; // Update address
+            document.querySelector('.right-modal-description p').textContent = `${itemDescription}`; // Update description
+
+            // Show the modal
             modal.classList.add('active');
         }
 
@@ -373,7 +300,7 @@
                 alert(result.message);
 
                 if (result.message === 'Item added to cart successfully!') {
-                    window.location.href = 'display.php'; // Redirect to the cart page
+                    window.location.href = 'mens.php'; // Redirect to the cart page
                 }
             } catch (error) {
                 alert('Failed to add item to cart.');
